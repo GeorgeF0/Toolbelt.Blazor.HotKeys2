@@ -32,6 +32,9 @@
     const InputTagName = "INPUT";
     const FluentInputTagName = "FLUENT-TEXT-FIELD";
 
+    const TextAreaTagName = "TEXTAREA";
+    const FluentTextAreaTagName = "FLUENT-TEXT-AREA";
+
     const keydown = "keydown";
 
     class HotkeyEntry {
@@ -76,7 +79,7 @@
             if (tagName === InputTagName && NonTextInputTypes.some(t => t === type)) return true;
         }
         if ((entry.exclude & Exclude.TextArea) !== 0) {
-            if (tagName === "TEXTAREA") return true;
+            if (tagName === TextAreaTagName || tagName === FluentTextAreaTagName) return true;
         }
         if ((entry.exclude & Exclude.ContentEditable) !== 0) {
             if (targetElement.isContentEditable) return true;

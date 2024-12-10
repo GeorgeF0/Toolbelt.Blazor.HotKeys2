@@ -9,6 +9,8 @@ export var Toolbelt;
             const NonTextInputTypes = ["button", "checkbox", "color", "file", "image", "radio", "range", "reset", "submit",];
             const InputTagName = "INPUT";
             const FluentInputTagName = "FLUENT-TEXT-FIELD";
+            const TextAreaTagName = "TEXTAREA";
+            const FluentTextAreaTagName = "FLUENT-TEXT-AREA";
             const keydown = "keydown";
             class HotkeyEntry {
                 constructor(dotNetObj, mode, modifiers, keyEntry, exclude, excludeSelector, isDisabled) {
@@ -44,7 +46,7 @@ export var Toolbelt;
                         return true;
                 }
                 if ((entry.exclude & 4) !== 0) {
-                    if (tagName === "TEXTAREA")
+                    if (tagName === TextAreaTagName || tagName === FluentTextAreaTagName)
                         return true;
                 }
                 if ((entry.exclude & 8) !== 0) {
