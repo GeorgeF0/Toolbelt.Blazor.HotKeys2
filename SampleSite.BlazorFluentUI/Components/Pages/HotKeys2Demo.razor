@@ -6,12 +6,28 @@
 <h3>HotKeys2 Demo</h3>
 
 <FluentStack Orientation="Orientation.Vertical">
-    <p>Click in the text box below and type Ctrl+Q. The shortcut will fire despite the text box being in focus</p>
-    <FluentTextField Placeholder="Fluent UI text box"></FluentTextField>
-    <p>Click in the text box below and type Ctrl+Q. The shortcut will not fire because the text box is in focus</p>
-    <input placeholder="Normal text box" />
+    <FluentCard>
+        <h4>FluentTextField vs Input</h4>
+        <p>Click in the text box below and type Ctrl+Q. The shortcut <em>will fire</em> despite the text box being in focus</p>
+        <FluentTextField Placeholder="Fluent UI text box"></FluentTextField>
+        <p>Click in the text box below and type Ctrl+Q. The shortcut will not fire because the text box is in focus</p>
+        <input placeholder="Normal text box" />
+    </FluentCard>
+    <FluentCard>
+        <h4>FluentTextArea vs TextArea</h4>
+        <p>Click in the text box below and type Ctrl+Q. The shortcut <em>will fire</em> despite the text box being in focus</p>
+        <FluentTextArea Placeholder="Fluent UI text box"></FluentTextArea>
+        <p>Click in the text box below and type Ctrl+Q. The shortcut will not fire because the text box is in focus</p>
+        <textarea placeholder="Normal text box" />
+    </FluentCard>
+    <FluentCard>
+        <h4>FluentCheckbox vs Checkbox</h4>
+        <p>Click in the checkbox below and type Ctrl+Q. The shortcut <em>will fire</em> despite the checkbox being in focus</p>
+        <FluentCheckbox></FluentCheckbox>
+        <p>Click in the checkbox and type Ctrl+Q. The shortcut will not fire because the checkbox is in focus</p>
+        <input type="checkbox"/>
+    </FluentCard>
 </FluentStack>
-
 
 @foreach (var message in _messages)
 {
@@ -34,7 +50,7 @@
 
     public void ShowBanner()
     {
-        _messages.Add($"{DateTime.Now:hh:mm:ss.fff}: You have pressed Q!");
+        _messages.Add($"{DateTime.Now:hh:mm:ss.fff}: You have pressed Ctrl+Q!");
     }
 
     public async ValueTask DisposeAsync()
