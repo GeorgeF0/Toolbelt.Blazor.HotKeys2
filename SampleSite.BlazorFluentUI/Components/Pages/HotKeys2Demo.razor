@@ -1,0 +1,47 @@
+﻿@page "/hotkeys2demo"
+@using Toolbelt.Blazor.HotKeys2
+@implements IAsyncDisposable
+@inject HotKeys HotKeys
+
+<h3>HotKeys2 Demo</h3>
+
+<FluentStack Orientation="Orientation.Vertical">
+    <p>Click in the text box below and type Ctrl+Q. The shortcut will fire despite the text box being in focus</p>
+    <FluentTextField Placeholder="Fluent UI text box"></FluentTextField>
+    <p>Click in the text box below and type Ctrl+Q. The shortcut will not fire because the text box is in focus</p>
+    <input placeholder="Normal text box" />
+</FluentStack>
+
+
+@foreach (var message in _messages)
+{
+    <FluentLabel @key="message">@message</FluentLabel>
+}
+
+@code {
+    private HotKeysContext? _hotKeysContext;
+    private List<string> _messages = [];
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _hotKeysContext = HotKeys
+                .CreateContext()
+                .Add(ModCode.Ctrl, Code.Q, ShowBanner);
+        }
+    }
+
+    public void ShowBanner()
+    {
+        _messages.Add($"{DateTime.Now:hh:mm:ss.fff}: You have pressed Q!");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_hotKeysContext != null)
+        {
+            await _hotKeysContext.DisposeAsync();
+        }
+    }
+}

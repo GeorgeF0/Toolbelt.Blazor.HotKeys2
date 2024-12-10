@@ -1,5 +1,6 @@
 using Microsoft.FluentUI.AspNetCore.Components;
 using SampleSite.BlazorFluentUI.Components;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddFluentUIComponents();
+builder.Services.AddHotKeys2();
 
 var app = builder.Build();
 
