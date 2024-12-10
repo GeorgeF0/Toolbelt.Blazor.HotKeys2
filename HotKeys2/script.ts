@@ -29,7 +29,8 @@
 
     const NonTextInputTypes = ["button", "checkbox", "color", "file", "image", "radio", "range", "reset", "submit",];
 
-    const InputTageName = "INPUT";
+    const InputTagName = "INPUT";
+    const FluentInputTagName = "FLUENT-TEXT-FIELD";
 
     const keydown = "keydown";
 
@@ -69,10 +70,10 @@
     const isExcludeTarget = (entry: HotkeyEntry, targetElement: HTMLElement, tagName: string, type: string | null): boolean => {
 
         if ((entry.exclude & Exclude.InputText) !== 0) {
-            if (tagName === InputTageName && NonTextInputTypes.every(t => t !== type)) return true;
+            if ((tagName === InputTagName || tagName === FluentInputTagName) && NonTextInputTypes.every(t => t !== type)) return true;
         }
         if ((entry.exclude & Exclude.InputNonText) !== 0) {
-            if (tagName === InputTageName && NonTextInputTypes.some(t => t === type)) return true;
+            if (tagName === InputTagName && NonTextInputTypes.some(t => t === type)) return true;
         }
         if ((entry.exclude & Exclude.TextArea) !== 0) {
             if (tagName === "TEXTAREA") return true;

@@ -7,7 +7,8 @@ export var Toolbelt;
             const doc = document;
             const OnKeyDownMethodName = "OnKeyDown";
             const NonTextInputTypes = ["button", "checkbox", "color", "file", "image", "radio", "range", "reset", "submit",];
-            const InputTageName = "INPUT";
+            const InputTagName = "INPUT";
+            const FluentInputTagName = "FLUENT-TEXT-FIELD";
             const keydown = "keydown";
             class HotkeyEntry {
                 constructor(dotNetObj, mode, modifiers, keyEntry, exclude, excludeSelector, isDisabled) {
@@ -35,11 +36,11 @@ export var Toolbelt;
             const startsWith = (str, prefix) => str.startsWith(prefix);
             const isExcludeTarget = (entry, targetElement, tagName, type) => {
                 if ((entry.exclude & 1) !== 0) {
-                    if (tagName === InputTageName && NonTextInputTypes.every(t => t !== type))
+                    if ((tagName === InputTagName || tagName === FluentInputTagName) && NonTextInputTypes.every(t => t !== type))
                         return true;
                 }
                 if ((entry.exclude & 2) !== 0) {
-                    if (tagName === InputTageName && NonTextInputTypes.some(t => t === type))
+                    if (tagName === InputTagName && NonTextInputTypes.some(t => t === type))
                         return true;
                 }
                 if ((entry.exclude & 4) !== 0) {
