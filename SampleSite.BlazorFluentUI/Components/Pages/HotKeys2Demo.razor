@@ -44,7 +44,7 @@
         {
             _hotKeysContext = HotKeys
                 .CreateContext()
-                .Add(ModCode.Ctrl, Code.Q, ShowBanner);
+                .Add(ModCode.Ctrl, Code.Q, ShowBanner, new(){ ExcludeSelector = "fluent-text-field,fluent-text-area,fluent-checkbox" });
         }
     }
 
